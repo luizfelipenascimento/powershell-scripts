@@ -1,7 +1,10 @@
 
 
 $arg = $args[0]
-$hostip = Get-NetIPAddress -InterfaceIndex 15 -AddressFamily IPv4
+
+$interfaces = Get-NetAdapter * -Physical
+$hostip = Get-NetIPAddress -InterfaceIndex $interfaces[0].ifIndex -AddressFamily IPv4
+
 $mongoDbServerPath = 'D:\mongodb-4.4.3\bin\mongod.exe'
 $dataPath = 'D:\mongo-data'
 
